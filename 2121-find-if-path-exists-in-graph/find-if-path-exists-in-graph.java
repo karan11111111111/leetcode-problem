@@ -16,18 +16,19 @@ class Solution {
 
         // Step 2: Perform BFS to find a path from source to destination
         Queue<Integer> queue = new LinkedList<>();
-        Set<Integer> visited = new HashSet<>();
+        boolean[] visited = new boolean[n];
         
         queue.offer(source);
-        visited.add(source);
+        visited[source] = true;
 
         while (!queue.isEmpty()) {
             int node = queue.poll();
             if (node == destination) {
                 return true;
             }
-            for (int neighbor : graph.get(node)) {
-                if (visited.add(neighbor)) {
+            for (int neighbor : graph.getOrDefault(node, Collections.emptyList())) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
                     queue.offer(neighbor);
                 }
             }
