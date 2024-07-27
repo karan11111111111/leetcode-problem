@@ -1,19 +1,23 @@
 class Solution {
     public int findJudge(int n, int[][] trust) {
-        
-        int [] arr = new int [n+1];
-        for(int i=0; i<trust.length; i++){
-            arr[trust[i][1]]++;
-            arr[trust[i][0]]--;
-        }
-        int x = -1;
+        if (n == 1) return 1; // If there's only one person, they are the judge by definition
 
-        for(int i=1; i<arr.length; i++){
-            if(arr[i] == n-1){
-                x=i;
+        int[] trustCount = new int[n + 1];
+        int[] trustedBy = new int[n + 1];
+
+        for (int[] t : trust) {
+            int a = t[0];
+            int b = t[1];
+            trustCount[b]++;
+            trustedBy[a]++;
+        }
+
+        for (int i = 1; i <= n; i++) {
+            if (trustCount[i] == n - 1 && trustedBy[i] == 0) {
+                return i; // i is the town judge
             }
         }
 
-        return x;
+        return -1; // No town judge found
     }
 }
