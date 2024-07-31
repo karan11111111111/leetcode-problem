@@ -1,18 +1,19 @@
+
 class Solution {
     public int reverse(int x) {
-        int reversed = 0;
-        
+        long reverse = 0;
+        int temp;
+
         while (x != 0) {
-            int pop = x % 10;
-            x /= 10;
-            
-            // Check for overflow before updating reversed
-            if (reversed > Integer.MAX_VALUE / 10 || (reversed == Integer.MAX_VALUE / 10 && pop > 7)) return 0;
-            if (reversed < Integer.MIN_VALUE / 10 || (reversed == Integer.MIN_VALUE / 10 && pop < -8)) return 0;
-            
-            reversed = reversed * 10 + pop;
+            temp = x % 10;
+            reverse = reverse * 10 + temp;
+            x = x / 10;
+
+            if (reverse > Integer.MAX_VALUE || reverse < Integer.MIN_VALUE) {
+                return 0;
+            }
         }
-        
-        return reversed;
+
+        return (int)reverse;
     }
 }
