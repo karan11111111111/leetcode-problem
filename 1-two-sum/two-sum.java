@@ -8,10 +8,11 @@ class Solution {
             if(nums[i]+nums[j]==target){
               b[0] = i;
               b[1] = j;  
+              return b;
             }
         }
        }
 
-    return b;
+    return null;
     }
 }
