@@ -1,41 +1,27 @@
 class Solution {
     public int minSubarray(int[] nums, int p) {
         int n = nums.length;
-        int totalSum = 0;
-
-        // Compute total sum mod p
-        for (int num : nums) {
-            totalSum = (totalSum + num) % p;
-        }
-
-        // If the sum is already divisible by p, return 0
-        int target = totalSum % p;
-        if (target == 0) {
+        double sum = 0;
+        for (int i : nums)
+            sum += i;
+        if (sum % p == 0.0)
             return 0;
+        HashMap<Integer, Integer> mh = new HashMap<>();
+        sum %= p;
+        int s = (int)(sum);
+        int len = n, mod = 0;
+        for (int i = 0; i < n; i++) {
+            if (len == 1)
+                return 1;
+            mod = (nums[i] + mod) % p;
+            mh.put(mod, i);
+            if (s == mod)
+                len = Math.min(i + 1, len);
+            if (mh.get((mod + p - s) % p) != null) 
+                len = Math.min(len, i -  mh.get((mod + p - s) % p));
         }
-
-        HashMap<Integer, Integer> modMap = new HashMap<>();
-        modMap.put(0, -1);  // Initialize with mod 0 at index -1
-
-        int currentSum = 0;
-        int minLen = n;
-
-        for (int i = 0; i < n; ++i) {
-            currentSum = (currentSum + nums[i]) % p;
-
-            // Calculate the required mod to remove
-            int needed = (currentSum - target + p) % p;
-
-            // If we found a subarray that, when removed, makes the total divisible by p
-            if (modMap.containsKey(needed)) {
-                minLen = Math.min(minLen, i - modMap.get(needed));
-            }
-
-            // Update the map with the current mod and index
-            modMap.put(currentSum, i);
-        }
-
-        // If minLen wasn't updated, return -1, otherwise return minLen
-        return minLen == n ? -1 : minLen;
+        if(len==n)
+            return -1;
+        return len;
     }
 }
