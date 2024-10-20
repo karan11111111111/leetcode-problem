@@ -26,9 +26,9 @@ class Solution {
 
     public ListNode deleteMiddle(ListNode head) {
 
-        if(head ==null || head.next ==null){
-            return null;
-        }
+        // if(head ==null || head.next ==null){
+        //     return null;
+        // }
         
     //     int mid = findMid(head);
         
@@ -44,16 +44,17 @@ class Solution {
 
     // optimised code
 
-     ListNode fast = head.next.next;
-     ListNode slow = head;
-
-     while(fast != null && fast.next !=null){
-        slow = slow.next;
-        fast = fast.next.next;
-     }
-      slow.next = slow.next.next;
-
-     return head;
+     if (head.next == null||head==null)
+            return null;
+        ListNode fast = head.next.next;
+        ListNode slow = head;
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        slow.next = slow.next.next;
+        return head;
 
     }
 }
