@@ -9,16 +9,41 @@
  *     }
  * }
  */
+// public class Solution {
+//     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+//         if(headA == null || headB == null) return null;
+//         ListNode a = headA;
+//         ListNode b = headB;
+
+//         while( a != b){
+//             a = a == null? headB : a.next;
+//             b = b == null? headA : b.next;    
+//         }
+//         return a;
+//     }
+
+    
+// }
+
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if(headA == null || headB == null) return null;
-        ListNode a = headA;
-        ListNode b = headB;
-
-        while( a != b){
-            a = a == null? headB : a.next;
-            b = b == null? headA : b.next;    
+        if(headA==null || headB==null){
+            return null;
         }
-        return a;
+        HashMap<ListNode,Integer> mpp=new HashMap<>();
+        ListNode first=headA;
+        ListNode second=headB;
+        while(first!=null){
+            mpp.put(first,mpp.getOrDefault(first,0)+1);
+            first=first.next;
+            }
+        while(second!=null){
+            if(mpp.containsKey(second)){
+                return second;
+            }
+            second=second.next;
+        }
+        return null;
+        
     }
 }
