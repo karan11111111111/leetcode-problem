@@ -51,7 +51,7 @@ class Solution {
         }
         if (prev != null){
             prev.next = null;
-        }
+         }
         
         return slow;
     }
