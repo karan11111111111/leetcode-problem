@@ -36,18 +36,38 @@ class Solution {
 
     // Tabulation
 
-    public int climbStairs(int n) {
+    // public int climbStairs(int n) {
 
         
-        int[] tabul = new int[n+1];
-        tabul[0] =1;
-        tabul[1] =1;
+    //     int[] tabul = new int[n+1];
+    //     tabul[0] =1;
+    //     tabul[1] =1;
 
-        for(int i=2; i<=n; i++){
-            tabul[i] = tabul[i-1] + tabul[i-2];
+    //     for(int i=2; i<=n; i++){
+    //         tabul[i] = tabul[i-1] + tabul[i-2];
+    //     }
+
+    //     return tabul[n];
+    // }
+
+    //space optimization
+
+
+  public int climbStairs(int n) {
+       
+   
+        if(n==0 || n==1){
+            return 1;
         }
-
-        return tabul[n];
+       int first =1, second = 1;
+        for(int i=2; i<=n; i++){
+            int current = first + second;
+            first = second;
+            second = current;
+        }
+        
+       return second;
     }
+
    
 }
