@@ -14,26 +14,6 @@ class Solution {
 
     //     return dp[n - 1]; // Check if you can reach the last index
     // }
-
-    // public boolean canJump(int[] nums) {
-    //     int n = nums.length;
-    //     int farthest = 0; // The farthest index that can be reached
-
-    //     for (int i = 0; i < n; i++) {
-    //         // If we can't reach this index, return false
-    //         if (i > farthest) {
-    //             return false;
-    //         }
-    //         // Update the farthest index we can reach from this position
-    //         farthest = Math.max(farthest, i + nums[i]);
-
-    //         // If we can reach or exceed the last index, return true
-    //         if (farthest >= n - 1) {
-    //             return true;
-    //         }
-    //     }
-    //     return false; // We reached the end of the loop without being able to jump to the last index
-    // }
     public boolean canJump(int[] nums) {
         int n = nums.length;
 
