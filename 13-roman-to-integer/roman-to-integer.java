@@ -1,47 +1,57 @@
 class Solution {
     public int romanToInt(String s) {
-      int length = s.length();
-        char c;
+        int length = s.length();
         int value = 0;
+
         for (int i = 0; i < length; i++) {
-            c = s.charAt(i);
-            if (c == 'I') {
-                if (i != length -1) {
-                    if ( s.charAt(i+1) == 'V') {
-                        value += 4;
-                        i++;
-                    } else if ( s.charAt(i+1) == 'X') {
-                        i++;
-                        value += 9;
-                    } else value += 1;
-                } else value += 1;
-            } else if (c == 'V') {
-                value += 5;
-            } else if (c == 'X') {
-                if (i != length -1) {
-                    if (s.charAt(i + 1) == 'L') {
-                        value += 40;
-                        i++;
-                    } else if (s.charAt(i + 1) == 'C') {
-                        value += 90;
-                        i++;
-                    } else value += 10;
-                } else value += 10;
-            } else if (c == 'L') {
-                value += 50;
-            } else if (c == 'C') {
-                if (i != length -1) {
-                    if (s.charAt(i + 1) == 'D') {
-                        value += 400;
-                        i++;
-                    } else if (s.charAt(i + 1) == 'M') {
-                        value += 900;
-                        i++;
-                    } else value += 100;
-                } else value += 100;
-            } else if (c == 'D') {
-                value += 500;
-            } else value += 1000;
+            char c = s.charAt(i);
+            switch (c) {
+                case 'I':
+                    if (i < length - 1 && (s.charAt(i + 1) == 'V' || s.charAt(i + 1) == 'X')) {
+                        value += (s.charAt(i + 1) == 'V') ? 4 : 9;
+                        i++; // Skip the next character
+                    } else {
+                        value += 1;
+                    }
+                    break;
+
+                case 'V':
+                    value += 5;
+                    break;
+
+                case 'X':
+                    if (i < length - 1 && (s.charAt(i + 1) == 'L' || s.charAt(i + 1) == 'C')) {
+                        value += (s.charAt(i + 1) == 'L') ? 40 : 90;
+                        i++; // Skip the next character
+                    } else {
+                        value += 10;
+                    }
+                    break;
+
+                case 'L':
+                    value += 50;
+                    break;
+
+                case 'C':
+                    if (i < length - 1 && (s.charAt(i + 1) == 'D' || s.charAt(i + 1) == 'M')) {
+                        value += (s.charAt(i + 1) == 'D') ? 400 : 900;
+                        i++; // Skip the next character
+                    } else {
+                        value += 100;
+                    }
+                    break;
+
+                case 'D':
+                    value += 500;
+                    break;
+
+                case 'M':
+                    value += 1000;
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Invalid Roman numeral character: " + c);
+            }
         }
         return value;
     }
