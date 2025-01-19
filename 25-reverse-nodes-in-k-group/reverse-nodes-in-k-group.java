@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        // Check if there are at least k nodes left in the list
+        
         ListNode current = head;
         int count = 0;
         while (count < k && current != null) {
@@ -18,9 +18,9 @@ class Solution {
             count++;
         }
         
-        // If we have k nodes, then we reverse them
+       
         if (count == k) {
-            // Reverse k nodes
+           
             ListNode prev = null;
             ListNode next = null;
             current = head;
@@ -30,15 +30,13 @@ class Solution {
                 prev = current;
                 current = next;
             }
-            // head is now the last node in the reversed group,
-            // so link it to the result of the next k-group reversal
-            if (next != null) {
+              if (next != null) {
                 head.next = reverseKGroup(next, k);
             }
-            // prev is the new head of the reversed group
+           
             return prev;
         }
-        // If we don't have k nodes, return head as it is
+       
         return head;
     }
 }
