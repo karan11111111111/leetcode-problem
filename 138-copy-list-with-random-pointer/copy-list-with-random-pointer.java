@@ -19,38 +19,37 @@ class Solution {
             return null;
         }
 
-        // Step 1: Create a copy of each node and insert it right after the original node
         Node curr = head;
         while (curr != null) {
             Node copy = new Node(curr.val);
             copy.next = curr.next;
             curr.next = copy;
-            curr = copy.next; // Move to the next original node
+            curr = copy.next; 
         }
 
-        // Step 2: Set the random pointers for the copied nodes
+       
         curr = head;
         while (curr != null) {
             if (curr.random != null) {
-                curr.next.random = curr.random.next; // Point to the copy of the random node
+                curr.next.random = curr.random.next; 
             }
-            curr = curr.next.next; // Move to the next original node
+            curr = curr.next.next; 
         }
 
-        // Step 3: Separate the original list and the copied list
+        
         curr = head;
-        Node copiedHead = head.next; // The head of the copied list
+        Node copiedHead = head.next; 
         Node copyCurr = copiedHead;
 
         while (curr != null) {
-            curr.next = curr.next.next; // Restore the original list
+            curr.next = curr.next.next; 
             if (copyCurr.next != null) {
-                copyCurr.next = copyCurr.next.next; // Move to the next copied node
+                copyCurr.next = copyCurr.next.next; 
             }
-            curr = curr.next; // Move to the next original node
-            copyCurr = copyCurr.next; // Move to the next copied node
+            curr = curr.next; 
+            copyCurr = copyCurr.next; 
         }
 
-        return copiedHead; // Return the head of the copied list
+        return copiedHead; 
     }
 }
