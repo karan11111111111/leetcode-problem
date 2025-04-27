@@ -5,7 +5,7 @@ class Solution {
             int first = nums[i];
             int second = nums[i + 1];
             int third = nums[i + 2];
-            if (first + third == second / 2 && (second % 2 == 0)) {
+            if (second % 2 == 0 && (first + third == second / 2)) {
                 count++;
             }
         }
