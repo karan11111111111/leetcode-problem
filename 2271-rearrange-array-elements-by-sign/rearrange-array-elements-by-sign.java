@@ -34,21 +34,22 @@
 
 class Solution{
     public int[] rearrangeArray(int [] nums){
-        int [] result = new int[nums.length];
-        int posIndex = 0;
-        int negIndex = 1;
+       int posInd = 0;
+       int negInd = 1;
+       int [] result = new int[nums.length];
 
-        for(int num: nums){
-            if(num>0){
-                result[posIndex] = num;
-                posIndex += 2;
-            }else{
-                result[negIndex] = num;
-                negIndex += 2;
-            }
-        }
+      for(int num: nums)
+      {
+        
+         if(num>0){
+        result[posInd] = num;
+            posInd +=2;
+       }else{
+        result[negInd] = num;
+        negInd +=2;
+       }}
 
-        return result;
+       return result;
     }
 
 }
