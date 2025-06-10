@@ -17,12 +17,14 @@ class Solution {
         // return -1;
 
 
-        if (nums.length == 0) {
-            return -1; // Return an invalid value since there is no majority element.
-        }
+        // if (nums.length == 0) {
+        //     return -1; // Return an invalid value since there is no majority element.
+        // }
 
         Arrays.sort(nums);
         return nums[nums.length / 2]; // The majority element is guaranteed to be at the middle after sorting.
+       
+       
     
     }
 
