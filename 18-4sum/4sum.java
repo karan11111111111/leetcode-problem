@@ -58,3 +58,31 @@ class Solution {
         return result;
     }
 }
+
+
+// import java.util.*;
+
+// class Solution {
+//     public List<List<Integer>> fourSum(int[] nums, int target) {
+//         int n = nums.length;
+//         Set<List<Integer>> result = new HashSet<>();
+
+//         // Try all quadruplets using 4 nested loops
+//         for (int i = 0; i < n - 3; i++) {
+//             for (int j = i + 1; j < n - 2; j++) {
+//                 for (int k = j + 1; k < n - 1; k++) {
+//                     for (int l = k + 1; l < n; l++) {
+//                         long sum = (long) nums[i] + nums[j] + nums[k] + nums[l]; // Use long to prevent overflow
+//                         if (sum == target) {
+//                             List<Integer> quad = Arrays.asList(nums[i], nums[j], nums[k], nums[l]);
+//                             Collections.sort(quad); // sort to avoid duplicates
+//                             result.add(quad);       // add to set to filter duplicates
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+
+//         return new ArrayList<>(result);
+//     }
+// }
