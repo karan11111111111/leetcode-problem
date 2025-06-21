@@ -12,23 +12,26 @@
 //     }
 // }
 
+
 class Solution {
     public int fib(int n) {
-        if(n==0) 
-        return 0;
-        if(n==1) 
-        return 1;
-        return calFib(0,1,2,n);
+      
+        int dp[] = new int[n+1];
+        Arrays.fill(dp,-1);
+
+        return solve(n ,dp);
+
+
+
     }
-    public static int calFib(int st1,int st2,int i,int n)
-    {
-        if(i==n) 
-        return st1+st2;
-        
-        int temp=st2+st1;
-        st1=st2;
-        st2=temp;
-        int res=calFib(st1,st2,++i,n);
-        return res;
+
+    private int solve(int n, int[] dp){
+        if(n==0 || n==1){
+            return n;
+        }
+
+        if(dp[n] != -1) return dp[n];
+
+        return dp[n] = solve(n-1, dp)+ solve(n-2, dp);
     }
 }
