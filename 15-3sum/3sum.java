@@ -1,50 +1,50 @@
-class Solution {
-    public List<List<Integer>> threeSum(int[] nums) {
+// class Solution {
+//     public List<List<Integer>> threeSum(int[] nums) {
         
-        List<List<Integer>> list = new ArrayList<>(); 
+//         List<List<Integer>> list = new ArrayList<>(); 
         
-        Arrays.sort(nums);
-        int n = nums.length;
+//         Arrays.sort(nums);
+//         int n = nums.length;
 
-        for(int i=0; i<n-2; i++){
-            if(i>0 && nums[i] == nums[i-1]){
-                continue;
-            }
+//         for(int i=0; i<n-2; i++){
+//             if(i>0 && nums[i] == nums[i-1]){
+//                 continue;
+//             }
 
-            int target = -nums[i];
-            int left =i+1;
-            int right = n-1;
+//             int target = -nums[i];
+//             int left =i+1;
+//             int right = n-1;
         
        
-        while(left <right){
-            int targetsum = nums[left] + nums[right];
+//         while(left <right){
+//             int targetsum = nums[left] + nums[right];
 
-            if(targetsum ==target){
-                list.add(Arrays.asList(nums[i], nums[left], nums[right]));
+//             if(targetsum ==target){
+//                 list.add(Arrays.asList(nums[i], nums[left], nums[right]));
 
-                while(left<right && nums[left] == nums[left+1]){
-                    left++;
-                }
+//                 while(left<right && nums[left] == nums[left+1]){
+//                     left++;
+//                 }
 
-                while(left<right && nums[right] == nums[right-1]){
-                    right--;
-                }
+//                 while(left<right && nums[right] == nums[right-1]){
+//                     right--;
+//                 }
 
-                left++;
-                right--;
+//                 left++;
+//                 right--;
 
                
-            }else if(targetsum <target){
-                left++;
-            }else{
-                right--;
-            }
+//             }else if(targetsum <target){
+//                 left++;
+//             }else{
+//                 right--;
+//             }
 
-        }  
-        }
-        return list;
-    }
-}
+//         }  
+//         }
+//         return list;
+//     }
+// }
 
 
 // Brute Force
@@ -75,3 +75,34 @@ class Solution {
 //         return new ArrayList<>(result);
 //     }
 // }
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        int n = nums.length;
+
+        Arrays.sort(nums); 
+
+        for (int i = 0; i < n - 2; i++) {
+            
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+            HashMap<Integer, Integer> map = new HashMap<>();
+            int currTarget = -nums[i];
+
+            for (int j = i + 1; j < n; j++) {
+                int comp = currTarget - nums[j];
+                if (map.containsKey(comp)) {
+                    result.add(Arrays.asList(nums[i], comp, nums[j]));
+
+                
+                    while (j + 1 < n && nums[j] == nums[j + 1]) j++;
+                }
+                map.put(nums[j], j);
+            }
+        }
+
+        return result;
+    }
+}
