@@ -1,21 +1,47 @@
+//brute force
+
+
+
+// class Solution {
+
+//     public int[] productExceptSelf(int[] nums) {
+
+//         int arr[] = new int[nums.length];
+
+//         for(int i=0; i<nums.length; i++){
+//             int mul =1;
+//             for(int j=0; j<nums.length; j++){
+//                 if(i!=j){
+//                 mul = mul* nums[j];
+//                 }
+//             }
+
+//             arr[i] = mul;
+//         }
+
+//         return arr;
+        
+//     }
+// }
+
 class Solution {
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
-        int[] answer = new int[n];
+        int[] result = new int[n];
 
-        // Step 1: Calculate the left products
-        answer[0] = 1; // There is no element to the left of the first element
+        // Step 1: Prefix products
+        result[0] = 1;  
         for (int i = 1; i < n; i++) {
-            answer[i] = answer[i - 1] * nums[i - 1];
+            result[i] = result[i - 1] * nums[i - 1];
         }
 
-        // Step 2: Calculate the right products and multiply with the left products
-        int rightProduct = 1; // Initially, there is no element to the right of the last element
+        // Step 2: Suffix products (use running variable to avoid extra array)
+        int suffix = 1;
         for (int i = n - 1; i >= 0; i--) {
-            answer[i] *= rightProduct; // Multiply with the right product
-            rightProduct *= nums[i]; // Update the right product
+            result[i] *= suffix;
+            suffix *= nums[i];
         }
 
-        return answer;
+        return result;
     }
 }
