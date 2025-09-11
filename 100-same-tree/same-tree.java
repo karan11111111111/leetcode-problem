@@ -12,36 +12,21 @@
  *         this.right = right;
  *     }
  * }
- */import java.util.LinkedList;
-import java.util.Queue;
-
+ */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(p);
-        queue.add(q);
 
-        while (!queue.isEmpty()) {
-            TreeNode node1 = queue.poll();
-            TreeNode node2 = queue.poll();
+        if(p==null && q == null ) return true;
 
-            if (node1 == null && node2 == null) {
-                continue; // Both nodes are null, so skip to the next pair
-            }
-            if (node1 == null || node2 == null) {
-                return false; // One node is null, the other is not
-            }
-            if (node1.val != node2.val) {
-                return false; // Values do not match
-            }
+        if(p == null || q == null) return false;
+       
 
-            // Add left and right children of both nodes to the queue
-            queue.add(node1.left);
-            queue.add(node2.left);
-            queue.add(node1.right);
-            queue.add(node2.right);
-        }
+        if (p.val != q.val)  return false;
+        
+     return   isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 
-        return true;
+      
+
     }
+
 }
