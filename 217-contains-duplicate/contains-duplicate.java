@@ -31,18 +31,34 @@ class Solution {
 
 
     public boolean containsDuplicate(int[] nums) {
+
+        Arrays.sort(nums);
         
-      Set<Integer> st = new HashSet<>();
+     
 
-      for(int num: nums){
+     for(int i=0; i<nums.length-1; i++){
+        if(nums[i] == nums[i+1]){
+            return true;
+        }
+     }
        
-       if(!st.add(num)){
-        return true;
-       }
       
-
-      }
         return false;
         
     }
+    // public boolean containsDuplicate(int[] nums) {
+        
+    //   Set<Integer> st = new HashSet<>();
+
+    //   for(int num: nums){
+       
+    //    if(!st.add(num)){
+    //     return true;
+    //    }
+      
+
+    //   }
+    //     return false;
+        
+    // }
 }
